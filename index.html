@@ -500,6 +500,7 @@ section[id],.hero{scroll-margin-top:110px}
         </dl>
       </div>
       <form id="inq" novalidate>
+        <input type="text" name="_hp" id="f-hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
         <div class="row2">
           <label for="f-company">회사명<input id="f-company" name="company" placeholder="예: ○○화학 ○○공장"></label>
           <label for="f-name">담당자<input id="f-name" name="name" placeholder="성함 / 직책"></label>
@@ -521,7 +522,7 @@ section[id],.hero{scroll-margin-top:110px}
         <label for="f-msg">문의 내용<textarea id="f-msg" name="msg" placeholder="대상 공정, 취급 물질, 일정 등을 알려 주시면 더 정확히 안내해 드립니다."></textarea></label>
         <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center">
           <button class="btn primary" type="submit">문의 보내기</button>
-          <span class="formmsg" id="formmsg" hidden>문의 접수 기능을 준비 중입니다. 급한 문의는 010-5285-3814 또는 kyungjinlee32@gmail.com으로 연락 주세요.</span>
+          <span class="formmsg" id="formmsg" role="status" hidden></span>
         </div>
       </form>
     </div>
@@ -538,7 +539,24 @@ section[id],.hero{scroll-margin-top:110px}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 (function(){
-  document.getElementById('inq').addEventListener('submit',function(e){e.preventDefault();document.getElementById('formmsg').hidden=false;});
+  (function(){
+    var f=document.getElementById('inq'),msg=document.getElementById('formmsg'),btn=f.querySelector('button[type=submit]');
+    function show(t,ok){msg.textContent=t;msg.style.color=ok?'var(--r1)':'var(--accent)';msg.hidden=false;}
+    f.addEventListener('submit',function(e){
+      e.preventDefault();
+      var v=function(id){return document.getElementById(id).value.trim();};
+      if(!v('f-contact')||!v('f-msg')){show('연락처와 문의 내용을 입력해 주세요.',false);return;}
+      if(f._hp&&f._hp.value){return;}
+      btn.disabled=true;show('보내는 중입니다…',true);
+      fetch('https://formsubmit.co/ajax/kyungjinlee32@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify({_subject:'[RBSS 홈페이지 문의] '+v('f-type')+' - '+(v('f-company')||'회사명 미기재'),_template:'table',_captcha:'false',
+          '회사명':v('f-company'),'담당자':v('f-name'),'연락처':v('f-contact'),'문의 분야':v('f-type'),'문의 내용':v('f-msg')})})
+      .then(function(r){return r.json().then(function(j){return {ok:r.ok&&String(j.success)!=='false'};});})
+      .then(function(r){if(!r.ok)throw 0;f.reset();show('문의가 접수되었습니다. 검토 후 연락드리겠습니다.',true);})
+      .catch(function(){show('전송에 실패했습니다. 010-5285-3814 또는 kyungjinlee32@gmail.com으로 연락 주세요.',false);})
+      .finally(function(){btn.disabled=false;});
+    });
+  })();
 
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
 

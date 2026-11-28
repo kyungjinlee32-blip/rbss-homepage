@@ -252,6 +252,26 @@ textarea{min-height:120px;resize:vertical}
 @media (max-width:860px){.contact{grid-template-columns:1fr}}
 @media (max-width:520px){.row2{grid-template-columns:1fr}}
 
+/* Q&A */
+.qa{display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:start}
+.qa > *{min-width:0}
+.faq{display:grid;gap:10px}
+.faq details{background:var(--surface);border:1px solid var(--line);border-radius:8px}
+.faq details[open]{border-color:var(--blue)}
+.faq summary{cursor:pointer;list-style:none;padding:15px 44px 15px 18px;font-weight:600;position:relative;display:flex;gap:10px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:18px;top:12px;font-size:20px;color:var(--muted)}
+.faq details[open] summary::after{content:"\2212"}
+.faq summary b{font-family:var(--f-mono);color:var(--accent)}
+.faq .ans{padding:0 18px 16px 18px;color:var(--muted);font-size:15px;line-height:1.7}
+.faq .ans p{margin:0 0 8px}
+.qa h3.qhead{font-size:17px;margin:0 0 6px}
+.qa .qnote{font-size:13.5px;color:var(--muted);margin:0 0 4px}
+@media (max-width:900px){.qa{grid-template-columns:1fr}}
+/* 방문자 수 */
+.visits{display:flex;gap:14px;flex-wrap:wrap;font-family:var(--f-mono);font-size:12.5px;opacity:.85}
+.visits[hidden]{display:none}
+.visits b{font-weight:600;color:var(--slogan)}
 footer{background:var(--deep);color:var(--deep-ink);font-size:13.5px}
 footer .wrap{padding-block:36px;display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between}
 footer p{opacity:.8}
@@ -275,6 +295,7 @@ section[id],.hero{scroll-margin-top:110px}
         <li><a href="#services">서비스</a></li>
         <li><a href="#projects">실적</a></li>
         <li><a href="#library">자료실</a></li>
+        <li><a href="#qa">Q&amp;A</a></li>
         <li><a class="cta" href="#contact">상담 문의</a></li>
       </ul>
     </nav>
@@ -462,10 +483,46 @@ section[id],.hero{scroll-margin-top:110px}
   </div>
 </section>
 
+<section id="qa">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag"><b><i>05</i></b>Q&amp;A</span>
+      <h2>자주 묻는 질문</h2>
+      <p>공정안전관리와 RBSS 서비스에 대해 자주 받는 질문을 모았습니다. 궁금한 점은 오른쪽에서 바로 질문해 주세요.</p>
+    </div>
+    <div class="qa">
+      <div class="faq">
+        <details><summary><b>Q1</b>우리 사업장이 공정안전보고서(PSM) 제출 대상인가요?</summary><div class="ans"><p>원유 정제, 석유화학, 화학비료, 화약 등 법에서 정한 업종이거나, 법에서 정한 유해·위험물질을 기준량 이상 제조·취급·저장하는 설비가 있으면 제출 대상입니다(산업안전보건법 제44조, 시행령 제43조).</p><p>물질별 보유량을 합산해 판단해야 하므로, 취급 물질 목록과 최대 보유량을 보내 주시면 대상 여부를 함께 검토해 드립니다.</p></div></details>
+        <details><summary><b>Q2</b>공정안전보고서는 언제까지, 얼마나 걸려 준비하나요?</summary><div class="ans"><p>유해·위험설비를 설치·이전하거나 주요 구조를 변경할 때는 공사 착공 30일 전까지 한국산업안전보건공단에 제출해야 합니다.</p><p>준비 기간은 공정 규모와 기존 자료 수준에 따라 다르지만 보통 수개월이 걸립니다. 공정안전자료 정리, 위험성평가(HAZOP 등), 안전운전계획, 비상조치계획을 순서대로 준비하므로 일정에 여유를 두고 시작하시길 권합니다.</p></div></details>
+        <details><summary><b>Q3</b>PSM 이행상태평가 등급(P·S·M+·M-)을 올리려면 무엇을 해야 하나요?</summary><div class="ans"><p>등급은 12대 요소가 서류뿐 아니라 현장에서 실제로 작동하는지를 보고 정해집니다. 변경관리(MOC), 설비점검·보수, 작업허가, 교육 기록처럼 평가에서 자주 지적되는 부분부터 보완하는 것이 효과적입니다.</p><p>RBSS는 평가 기준에 맞춘 자체감사로 부족한 부분을 찾고, 실무자 교육과 개선 계획 수립까지 지원합니다.</p></div></details>
+        <details><summary><b>Q4</b>HAZOP 같은 위험성평가는 한 번 하면 끝인가요?</summary><div class="ans"><p>아닙니다. 설비나 운전 조건이 바뀌면 변경관리 절차에 따라 위험성평가를 다시 해야 하고, 사고·아차사고가 있었거나 일정 기간이 지나면 재평가로 최신 상태를 유지해야 합니다.</p><p>공정 특성에 따라 HAZOP, Checklist, What-if, LOPA 등 알맞은 기법을 골라 진행합니다.</p></div></details>
+        <details><summary><b>Q5</b>중대재해처벌법 대응은 무엇부터 시작해야 하나요?</summary><div class="ans"><p>경영책임자의 안전보건 목표와 경영방침 수립, 유해·위험요인 확인과 개선 절차, 안전보건 예산과 인력 확보, 반기별 점검 등 안전보건관리체계를 갖추고, 그 이행을 기록으로 남기는 것이 출발점입니다.</p><p>RBSS는 현재 체계를 진단해 빠진 부분과 우선순위를 정리해 드립니다.</p></div></details>
+        <details><summary><b>Q6</b>안전관리자 업무를 외부에 위탁할 수 있나요?</summary><div class="ans"><p>상시근로자 300명 미만 사업장은 고용노동부가 지정한 안전관리전문기관에 안전관리자 업무를 위탁할 수 있습니다(일부 업종 제외). 일정 규모 이하 사업장의 안전보건관리담당자 업무도 위탁할 수 있습니다.</p><p>RBSS는 안전관리전문기관으로서 정기 방문 점검, 위험성평가, 교육, 기록 관리를 지원합니다. 해당 여부는 사업장 업종과 인원을 알려 주시면 확인해 드립니다.</p></div></details>
+        <details><summary><b>Q7</b>컨설팅은 어떤 순서로 진행되고 비용은 어떻게 정해지나요?</summary><div class="ans"><p>상담 → 현장 확인 및 자료 검토 → 범위·일정·비용 제안 → 수행 → 사후 관리 순서로 진행합니다.</p><p>비용은 공정 규모, 범위, 기존 자료 수준에 따라 달라지므로 현장 확인 후 견적을 드립니다. 첫 상담은 부담 없이 문의해 주세요.</p></div></details>
+        <details><summary><b>Q8</b>교육이나 현장 방문은 어느 지역까지 가능한가요?</summary><div class="ans"><p>순천 본사와 인천 송도 사무소를 거점으로 전국 사업장을 방문합니다. 안전문화 교육, PSM 실무 교육, Learning Team Program은 사업장 일정에 맞춰 현장에서 진행할 수 있습니다.</p></div></details>
+        <p class="note">법령 기준은 개정될 수 있습니다. 실제 적용 여부는 최신 법령과 사업장 조건을 기준으로 확인해 드립니다.</p>
+      </div>
+      <form id="qform" novalidate>
+        <div>
+          <h3 class="qhead">질문하기</h3>
+          <p class="qnote">질문을 남겨 주시면 대표 컨설턴트가 직접 답변드립니다. 많이 받는 질문은 개인정보를 빼고 위 Q&amp;A에 추가될 수 있습니다.</p>
+        </div>
+        <label for="q-name">성함 / 회사명 (선택)<input id="q-name" name="name" placeholder="예: 홍길동 / ○○화학"></label>
+        <label for="q-reply">답변 받을 이메일 또는 연락처<input id="q-reply" name="reply" placeholder="example@company.com"></label>
+        <label for="q-msg">질문 내용<textarea id="q-msg" name="question" placeholder="예: 저장탱크 용량을 늘리면 공정안전보고서를 다시 제출해야 하나요?"></textarea></label>
+        <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+          <button class="btn primary" type="submit">질문 보내기</button>
+          <span class="formmsg" id="qmsg" role="status" hidden></span>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
 <section id="contact">
   <div class="wrap">
     <div class="sec-head">
-      <span class="tag"><b><i>05</i></b>Contact</span>
+      <span class="tag"><b><i>06</i></b>Contact</span>
       <h2>상담 문의</h2>
       <p>공정안전보고서 신규 제출, 이행평가 대비, HAZOP·위험성평가 등 필요한 내용을 남겨 주시면 전문위원이 검토 후 연락드립니다.</p>
     </div>
@@ -551,7 +608,7 @@ section[id],.hero{scroll-margin-top:110px}
 <footer>
   <div class="wrap">
     <div><strong>주식회사 알비에스에스 (RBSS)</strong><p>안전관리자 업무 위탁 · 안전관리전문기관 · 사업자등록번호 348-81-03742</p><p>Tel 010-5285-3814 · Fax 070-7543-3824 · kyungjinlee32@gmail.com</p></div>
-    <p>© 2026 RBSS Risk Based Safety Solutions</p>
+    <div><p>© 2026 RBSS Risk Based Safety Solutions</p><p class="visits" id="visits" hidden><span id="v-today-w" hidden>오늘 방문 <b id="v-today">-</b></span><span>누적 방문 <b id="v-total">-</b></span></p></div>
   </div>
 </footer>
 
@@ -563,6 +620,46 @@ section[id],.hero{scroll-margin-top:110px}
   d.querySelector('.exp-close').addEventListener('click',function(){d.close();});
   d.addEventListener('click',function(e){if(e.target===d)d.close();});
   if(location.hash==='#experts')open();
+})();
+</script>
+<script>
+/* Q&A 질문하기: 상담 문의와 같은 FormSubmit 주소로 메일 전송 */
+(function(){
+  var f=document.getElementById('qform');if(!f)return;
+  var msg=document.getElementById('qmsg'),btn=f.querySelector('button[type=submit]');
+  function show(t,ok){msg.textContent=t;msg.style.color=ok?'var(--r1)':'var(--accent)';msg.hidden=false;}
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var v=function(id){return document.getElementById(id).value.trim();};
+    if(!v('q-reply')||!v('q-msg')){show('답변 받을 연락처와 질문 내용을 입력해 주세요.',false);return;}
+    btn.disabled=true;show('보내는 중입니다…',true);
+    fetch('https://formsubmit.co/ajax/kyungjinlee32@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({_subject:'[RBSS 홈페이지 Q&A 질문] '+v('q-msg').slice(0,30),_template:'table',_captcha:'false',
+        '성함/회사명':v('q-name'),'답변 받을 연락처':v('q-reply'),'질문 내용':v('q-msg')})})
+    .then(function(r){return r.json().catch(function(){return {};}).then(function(j){return {ok:r.ok&&String(j.success)!=='false',m:String(j.message||'')};});})
+    .then(function(r){
+      if(/activat/i.test(r.m)){show('질문 접수 기능 활성화가 필요합니다. 관리자 메일함의 Activate Form 메일을 확인해 주세요.',false);return;}
+      if(!r.ok)throw 0;f.reset();show('질문이 접수되었습니다. 남겨 주신 연락처로 답변드리겠습니다.',true);})
+    .catch(function(){show('전송에 실패했습니다. kyungjinlee32@gmail.com으로 보내 주세요.',false);})
+    .finally(function(){btn.disabled=false;});
+  });
+})();
+</script>
+<!-- 방문자 수: GoatCounter (무료). GC_CODE에 GoatCounter 사이트 코드를 넣으면 작동합니다. -->
+<script>
+(function(){
+  var GC_CODE='rbss-safety';
+  if(!GC_CODE||/^(localhost|127\.)/.test(location.hostname)||location.protocol==='file:')return;
+  var base='https://'+GC_CODE+'.goatcounter.com';
+  window.goatcounter={no_onload:false};
+  var s=document.createElement('script');s.async=true;s.src='//gc.zgo.at/count.js';s.setAttribute('data-goatcounter',base+'/count');
+  document.head.appendChild(s);
+  var box=document.getElementById('visits');if(!box||!window.fetch)return;
+  function get(q){return fetch(base+'/counter/TOTAL.json'+q).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(j){return j.count;});}
+  var d=new Date(),p=function(n){return (n<10?'0':'')+n;},today=d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate());
+  get('').then(function(c){document.getElementById('v-total').textContent=c;box.hidden=false;
+    return get('?start='+today).then(function(t){document.getElementById('v-today').textContent=t;document.getElementById('v-today-w').hidden=false;});
+  }).catch(function(){});
 })();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>

@@ -168,10 +168,13 @@ section + section{border-top:1px solid var(--line)}
 .kv div{display:grid;grid-template-columns:112px 1fr;gap:12px}
 .kv dt{color:var(--muted)}
 .kv dd{margin:0}
-.kv .ov-h{margin:12px 0 4px;font-weight:700;color:var(--ink)}
-.kv ul.ov{margin:0;padding-left:18px;display:grid;gap:8px}
-.kv ul.ov li{color:var(--muted)}
-.kv ul.ov b{color:var(--ink);font-weight:600}
+.ov-block{margin-top:40px}
+.ov-title{font-size:19px;margin:0 0 16px;padding-left:12px;border-left:3px solid var(--accent)}
+.ov-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.ov-grid li{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;font-size:14.5px;color:var(--muted);min-width:0}
+.ov-grid b{color:var(--ink);font-weight:600}
+@media (min-width:1100px){.ov-grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:760px){.ov-grid{grid-template-columns:1fr}}
 @media (max-width:520px){.kv div{grid-template-columns:1fr;gap:2px}}
 @media (max-width:860px){.about-grid{grid-template-columns:1fr}}
 
@@ -369,8 +372,14 @@ section[id],.hero{scroll-margin-top:110px}
         </div>
         <dl class="kv">
           <div><dt>Career</dt><dd>KBR, Technical Safety Lead, Iraq CSSP Project (May 2026 to present)<br>Principal Consultant, RBSS (currently on temporary business suspension)<br>GS Caltex, Safety &amp; Health Planning Team<br>Samsung Fire &amp; Marine Insurance, Risk Engineering Center, Senior Risk Surveyor<br>Daelim Industrial, Petrochemical Division (PSM set-up and maintenance)
-            <p class="ov-h">Overseas assignments and international companies</p>
-            <ul class="ov">
+          
+          </dd></div>
+        </dl>
+      </article>
+    </div>
+    <div class="ov-block">
+      <h3 class="ov-title">Overseas assignments and international companies</h3>
+      <ul class="ov-grid">
               <li><b>KBR · Iraq CSSP Project</b> (May 2026 to present)<br>PMC Technical Safety Lead for TotalEnergies' Iraq Common Seawater Supply Project. Leads PMC technical safety in detailed design; reviews EPC contractor HSE and technical safety deliverables and vendor proposals including fire protection systems against TotalEnergies GS-GR-HSE specifications; reviews HAZID, HAZOP, SIL and fire and explosion risk assessments.</li>
               <li><b>Budapest, Hungary · Samsung SDI Hungary</b> (Oct 2023 to Oct 2025)<br>Director, Safety Advisor. Safety advisory for the Plant 2-2 expansion and modification project at a lithium-ion battery manufacturing plant.</li>
               <li><b>Matheson Gas Production Korea</b> (Aug 2022 to Oct 2023)<br>Director, EHS Team Leader. Overall EHS management of a specialty gas production facility for the semiconductor industry.</li>
@@ -383,10 +392,7 @@ section[id],.hero{scroll-margin-top:110px}
               <li><b>Kuwait · Saudi Arabia · Thailand · Egypt · GS Engineering &amp; Construction</b> (May 2007 to Jan 2008)<br>Project HSE Manager. Supported HSE system set-up for overseas plant projects and new project proposals.</li>
               <li><b>Skikda, Algeria · Daelim Industrial, HDPE Rehabilitation Project</b> (May 2005 to Apr 2006)<br>HSE Manager. Established the safety management system and process safety management for the new plant.</li>
               <li><b>Asaluyeh, Iran · Daelim Industrial, South Pars Gas Project</b> (Nov 2004 to Apr 2005)<br>Precommissioning Lead Engineer (JGC/TOYO J/V). Prepared commissioning manuals and start-up P&amp;IDs.</li>
-            </ul>
-          </dd></div>
-        </dl>
-      </article>
+      </ul>
     </div>
   </div>
 </section>

@@ -1,0 +1,879 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>RBSS Process Safety Consulting</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="RBSS (Risk Based Safety Solutions) is a field-oriented Risk Based Process Safety consultancy in Korea: PSM reports and permitting, HAZOP, consequence analysis, Serious Accidents Punishment Act compliance, outsourced safety management and safety culture assessment.">
+<meta property="og:title" content="RBSS Process Safety Consulting">
+<meta property="og:description" content="Process safety that works in the field. PSM, HAZOP, risk assessment and outsourced safety management.">
+<meta property="og:image" content="https://www.rbss-safety.com/logo.png">
+<meta property="og:url" content="https://www.rbss-safety.com/en/">
+<link rel="canonical" href="https://www.rbss-safety.com/en/">
+<link rel="alternate" hreflang="ko" href="https://www.rbss-safety.com/">
+<link rel="alternate" hreflang="en" href="https://www.rbss-safety.com/en/">
+<meta property="og:type" content="website">
+<link rel="icon" href="../logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: engineering-document feel. Sticky nav, section labels styled as P&ID instrument tags, risk matrix as the hero thesis. */
+:root{
+  --bg:#F3F6F9; --surface:#FFFFFF; --ink:#112334; --muted:#4F6273; --line:#D3DCE4;
+  --accent:#C0392F; --accent-ink:#FFFFFF; --deep:#123A5E; --deep-ink:#EAF2F9;
+  --blue:#2F84CF; --slogan:#F2D33D;
+  --r1:#3E8E6A; --r2:#B9A23A; --r3:#D27A2C; --r4:#B83B32;
+  --tbd-bg:#FFF3D6; --tbd-ink:#7A4A00;
+  --f-body:"IBM Plex Sans","IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0D1822; --surface:#14232F; --ink:#E3ECF3; --muted:#9BB0C1; --line:#273B4B;
+  --accent:#E8675C; --accent-ink:#1C0806; --deep:#0A1A29; --deep-ink:#DCE8F2;
+  --blue:#5DA6E6; --slogan:#F2D33D;
+  --r1:#4FA67F; --r2:#C9B24A; --r3:#E08A3C; --r4:#D0564C;
+  --tbd-bg:#3A2C10; --tbd-ink:#F4CF85; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0D1822; --surface:#14232F; --ink:#E3ECF3; --muted:#9BB0C1; --line:#273B4B;
+  --accent:#E8675C; --accent-ink:#1C0806; --deep:#0A1A29; --deep-ink:#DCE8F2;
+  --blue:#5DA6E6; --slogan:#F2D33D;
+  --r1:#4FA67F; --r2:#C9B24A; --r3:#E08A3C; --r4:#D0564C;
+  --tbd-bg:#3A2C10; --tbd-ink:#F4CF85; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.65;overflow-wrap:break-word}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{line-height:1.3;text-wrap:balance;margin:0}
+p{margin:0}
+
+/* preview banner */
+.preview{background:var(--tbd-bg);color:var(--tbd-ink);font-size:13.5px}
+.preview .wrap{padding-block:8px}
+
+/* header */
+header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+header.site .wrap{display:flex;align-items:center;gap:24px;padding-block:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.brand-logo{height:40px;width:auto;flex-shrink:0;display:block}
+.brand-name{font-weight:700;font-size:20px;letter-spacing:.03em;line-height:1.15;color:var(--blue)}
+.brand-name small{display:block;font-weight:600;font-size:11px;color:var(--accent);letter-spacing:.06em}
+.gov{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;padding:5px 12px 5px 8px;border-radius:999px;background:color-mix(in srgb,var(--deep-ink) 12%,transparent);border:1px solid color-mix(in srgb,var(--deep-ink) 25%,transparent)}
+.gov svg{width:18px;height:18px}
+.slogan{margin-top:26px;padding-left:16px;border-left:3px solid var(--slogan);font-style:italic;font-size:15.5px;line-height:1.6}
+.slogan span{display:block;font-style:normal;font-size:13px;opacity:.75;margin-top:4px}
+.areas{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px}
+.area{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--blue);border-radius:8px;padding:18px;display:grid;gap:6px;min-width:0}
+.area .k{font-family:var(--f-mono);font-size:11.5px;color:var(--blue);letter-spacing:.06em}
+.area h3{font-size:16.5px}
+.area p{font-size:13.5px;color:var(--muted)}
+@media (max-width:900px){.areas{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.areas{grid-template-columns:1fr}}
+.portrait{float:right;width:132px;aspect-ratio:413/531;max-width:40%;object-fit:cover;border-radius:8px;margin:0 0 12px 16px;border:1px solid var(--line)}
+.cinfo dd a{color:var(--blue)}
+nav.main{margin-left:auto;overflow-x:auto;min-width:0}
+nav.main ul{display:flex;gap:4px;list-style:none;margin:0;padding:0;white-space:nowrap}
+nav.main a{display:block;padding:6px 10px;border-radius:6px;text-decoration:none;font-size:14.5px;font-weight:500;color:var(--muted)}
+nav.main a:hover{color:var(--ink);background:var(--bg)}
+nav.main a.cta{background:var(--accent);color:var(--accent-ink)}
+.lang-sw{display:flex;align-items:center;flex-shrink:0;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.lang-sw a{display:block;padding:5px 9px;font-size:13px;font-weight:600;text-decoration:none;color:var(--muted)}
+.lang-sw a:hover{color:var(--ink);background:var(--bg)}
+.lang-sw a[aria-current]{background:var(--deep);color:var(--deep-ink)}
+@media (max-width:760px){header.site .wrap{position:relative}.brand{padding-right:100px}.lang-sw{position:absolute;right:max(16px,env(safe-area-inset-right,0px));top:16px}}
+@media (max-width:760px){header.site .wrap{flex-direction:column;align-items:stretch;gap:8px}nav.main{margin-left:0}}
+
+/* tag label (P&ID instrument bubble) */
+.tag{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-mono);font-size:12.5px;font-weight:600;letter-spacing:.08em;color:var(--accent);text-transform:uppercase}
+.tag b{display:inline-grid;place-items:center;width:34px;height:34px;border:1.5px solid currentColor;border-radius:50%;font-size:10.5px;letter-spacing:0;position:relative}
+.tag b::after{content:"";position:absolute;left:0;right:0;top:50%;border-top:1.5px solid currentColor}
+.tag b i{font-style:normal;position:relative;top:-6px}
+
+section{padding-block:72px}
+section + section{border-top:1px solid var(--line)}
+.sec-head{display:grid;gap:12px;margin-bottom:36px;max-width:720px}
+.sec-head h2{font-size:clamp(26px,3.4vw,34px);font-weight:700}
+.sec-head p{color:var(--muted)}
+
+.tbd{background:var(--tbd-bg);color:var(--tbd-ink);border:1px dashed currentColor;border-radius:4px;padding:0 6px;font-size:.86em;font-weight:500;white-space:nowrap}
+
+/* hero */
+.hero{background:var(--deep);color:var(--deep-ink)}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;padding-block:72px}
+.hero .tag{color:var(--accent)}
+.hero h1 em{color:var(--slogan)}
+.hero h1{font-size:clamp(30px,4.6vw,48px);font-weight:700;margin-block:18px 20px;letter-spacing:-.01em}
+.hero h1 em{font-style:normal}
+.hero p.lead{font-size:17.5px;max-width:34em;opacity:.88}
+.hero .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-block;padding:11px 20px;border-radius:6px;font-weight:600;text-decoration:none;font-size:15px;border:1.5px solid transparent;cursor:pointer;font-family:inherit}
+.btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{border-color:currentColor}
+.facts{display:flex;flex-wrap:wrap;gap:28px;margin-top:40px;font-variant-numeric:tabular-nums}
+.facts div{display:grid}
+.facts strong{font-size:26px;font-weight:700;font-family:var(--f-mono)}
+.facts span{font-size:13px;opacity:.75}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}}
+.hero .wrap{grid-template-columns:1fr 1fr}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}}
+.scene-wrap{margin:0;display:grid;gap:12px;min-width:0}
+.scene{position:relative;height:clamp(300px,40vw,470px);border-radius:14px;overflow:hidden;background:radial-gradient(circle at 50% 45%,color-mix(in srgb,var(--blue) 30%,transparent),transparent 70%);border:1px solid color-mix(in srgb,var(--deep-ink) 15%,transparent);cursor:grab}
+.scene:active{cursor:grabbing}
+.scene canvas{display:block;width:100%;height:100%;touch-action:pan-y}
+.scene .hud,.scene .hint{position:absolute;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;opacity:.75;pointer-events:none}
+.scene .hud{left:14px;top:12px}
+.scene .hint{right:14px;bottom:10px;font-family:var(--f-body);letter-spacing:0}
+.scene .fallback{position:absolute;inset:0;display:grid;place-items:center;padding:24px;text-align:center;font-size:14px;opacity:.8}
+.layers{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.layers button{font:inherit;font-size:12.5px;color:inherit;background:transparent;border:1px solid color-mix(in srgb,var(--deep-ink) 25%,transparent);border-radius:999px;padding:4px 11px;display:inline-flex;gap:7px;align-items:center;cursor:pointer}
+.layers button[aria-pressed="true"]{background:color-mix(in srgb,var(--deep-ink) 16%,transparent);border-color:var(--deep-ink)}
+.layers i{width:9px;height:9px;border-radius:50%;display:inline-block}
+.layerdesc{font-size:13.5px;opacity:.85;min-height:3em}
+.tilt{transition:transform .25s ease,box-shadow .25s ease;transform-style:preserve-3d;will-change:transform}
+.tilt:hover{box-shadow:0 14px 30px -18px color-mix(in srgb,var(--ink) 60%,transparent)}
+@media (prefers-reduced-motion:reduce){.tilt{transition:none}}
+
+/* risk matrix */
+.matrix{background:color-mix(in srgb,var(--deep-ink) 6%,transparent);border:1px solid color-mix(in srgb,var(--deep-ink) 18%,transparent);border-radius:10px;padding:20px;max-width:420px;width:100%;justify-self:center}
+.matrix figcaption{font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;opacity:.8;margin-bottom:14px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.mgrid{display:grid;grid-template-columns:22px repeat(5,1fr);gap:4px;position:relative}
+.mgrid .cell{aspect-ratio:1;border-radius:3px;position:relative;max-width:100%}
+.mgrid .ylab{writing-mode:vertical-rl;transform:rotate(180deg);font-size:11px;opacity:.7;grid-row:1/6;text-align:center}
+.xlab{grid-column:2/7;text-align:center;font-size:11px;opacity:.7}
+.c1{background:var(--r1)}.c2{background:var(--r2)}.c3{background:var(--r3)}.c4{background:var(--r4)}
+.dot{position:absolute;inset:18%;border-radius:50%;border:2.5px solid #fff;display:grid;place-items:center;font-family:var(--f-mono);font-size:10px;font-weight:600;color:#fff}
+.dot.before{background:#0009}
+.dot.after{background:#fff;color:#14323C}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;font-size:12px;opacity:.85}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:10px;height:10px;border-radius:2px;display:inline-block}
+
+/* about */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.about-grid > *{min-width:0}
+.greeting p + p{margin-top:14px}
+.greeting .sign{margin-top:24px;font-weight:600}
+.profile{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:28px}
+.profile h3{font-size:22px}
+.profile .role{color:var(--muted);font-size:14.5px;margin-top:4px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-block:16px}
+.chip{font-size:12.5px;padding:3px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-weight:500}
+.chip.hot{border-color:var(--accent);color:var(--accent)}
+.timeline{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:10px;font-size:14.5px}
+.timeline li{display:grid;grid-template-columns:76px 1fr;gap:12px}
+.timeline time{font-family:var(--f-mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.kv{display:grid;gap:4px;font-size:14.5px;margin-top:14px}
+.kv div{display:grid;grid-template-columns:112px 1fr;gap:12px}
+.kv dt{color:var(--muted)}
+.kv dd{margin:0}
+.kv .ov-h{margin:12px 0 4px;font-weight:700;color:var(--ink)}
+.kv ul.ov{margin:0;padding-left:18px;display:grid;gap:8px}
+.kv ul.ov li{color:var(--muted)}
+.kv ul.ov b{color:var(--ink);font-weight:600}
+@media (max-width:520px){.kv div{grid-template-columns:1fr;gap:2px}}
+@media (max-width:860px){.about-grid{grid-template-columns:1fr}}
+
+/* experts */
+.experts{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.expert{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.expert .field{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.06em;color:var(--accent);text-transform:uppercase}
+.expert h3{font-size:20px}
+.expert .yrs{color:var(--muted);font-size:14px}
+.expert ul{margin:10px 0 0;padding-left:18px;font-size:14.5px;display:grid;gap:4px}
+@media (max-width:900px){.experts{grid-template-columns:1fr}}
+.exp-dlg{width:min(960px,calc(100vw - 32px));max-height:calc(100vh - 48px);overflow:auto;padding:28px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+.exp-dlg::backdrop{background:rgba(10,20,35,.55)}
+.exp-dlg-head{display:flex;gap:16px;align-items:flex-start;justify-content:space-between;margin-bottom:20px}
+.exp-dlg-head h2{margin:8px 0 6px}
+.exp-dlg-head p{margin:0;color:var(--muted)}
+.exp-close{flex:none;width:40px;height:40px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-size:24px;line-height:1;cursor:pointer}
+@media (max-width:520px){.exp-dlg{padding:18px}}
+
+/* services */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.svc{background:var(--surface);padding:26px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.svc .code{font-family:var(--f-mono);font-size:12px;color:var(--muted);letter-spacing:.06em}
+.svc h3{font-size:19px}
+.svc p{font-size:14.5px;color:var(--muted)}
+@media (max-width:900px){.svc-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.svc-grid{grid-template-columns:1fr}}
+
+.psm12{margin-top:48px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:28px}
+.psm12 h3{font-size:19px;margin-bottom:6px}
+.psm12 > p{color:var(--muted);font-size:14.5px;margin-bottom:20px}
+.psm12 ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;counter-reset:e}
+.psm12 li{counter-increment:e;border:1px solid var(--line);border-radius:6px;padding:10px 12px;font-size:14px;display:flex;gap:10px;align-items:baseline}
+.psm12 li::before{content:counter(e,decimal-leading-zero);font-family:var(--f-mono);font-size:12px;color:var(--accent);font-weight:600}
+@media (max-width:900px){.psm12 ol{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.psm12 ol{grid-template-columns:1fr}}
+
+.why{display:grid;grid-template-columns:repeat(2,1fr);gap:20px 40px;margin-top:48px}
+.why div{display:grid;gap:6px;border-top:2px solid var(--ink);padding-top:14px}
+.why h3{font-size:17px}
+.why p{font-size:14.5px;color:var(--muted)}
+@media (max-width:700px){.why{grid-template-columns:1fr}}
+
+/* projects */
+.table-wrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:14.5px}
+th,td{text-align:left;padding:13px 18px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12.5px;font-weight:600;color:var(--muted);letter-spacing:.04em;background:var(--bg)}
+tr:last-child td{border-bottom:0}
+td.yr{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--muted)}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px;background:var(--bg);border:1px solid var(--line);white-space:nowrap}
+.note{font-size:13.5px;color:var(--muted);margin-top:14px}
+
+/* library */
+.lib{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.doc{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px 22px;display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:start;min-width:0}
+.doc .ftype{font-family:var(--f-mono);font-size:11px;font-weight:600;border:1.5px solid var(--muted);color:var(--muted);border-radius:4px;padding:4px 6px;margin-top:3px}
+.doc h3{font-size:16.5px}
+.doc p{font-size:14px;color:var(--muted);margin-top:2px}
+.doc .status{font-size:12px;color:var(--muted);white-space:nowrap}
+.libgroup{font-size:17px;margin:28px 0 14px;display:flex;align-items:center;gap:10px}
+.libgroup:first-of-type{margin-top:0}
+.libgroup .open{font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px;background:var(--r1);color:#fff}
+.doc .status.on{color:var(--r1);font-weight:600}
+a.doc{text-decoration:none;color:inherit}
+a.doc:hover{border-color:var(--blue)}
+a.doc:hover h3{color:var(--blue)}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.links a{font-size:14px;padding:7px 14px;border:1px solid var(--line);border-radius:6px;background:var(--surface);text-decoration:none}
+.links a:hover{border-color:var(--accent)}
+@media (max-width:760px){.lib{grid-template-columns:1fr}}
+
+/* contact */
+.contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px}
+.contact > *{min-width:0}
+.cinfo dl{display:grid;gap:18px;margin:0}
+.cinfo dt{font-size:12.5px;color:var(--muted);letter-spacing:.04em;font-weight:600}
+.cinfo dd{margin:2px 0 0;font-size:16px}
+form{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:28px;display:grid;gap:16px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+label{display:grid;gap:6px;font-size:13.5px;font-weight:600;color:var(--muted)}
+input,select,textarea{font:inherit;font-size:15px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:10px 12px;width:100%}
+textarea{min-height:120px;resize:vertical}
+.formmsg{font-size:14px;color:var(--r1);font-weight:600}
+@media (max-width:860px){.contact{grid-template-columns:1fr}}
+@media (max-width:520px){.row2{grid-template-columns:1fr}}
+
+/* Q&A */
+.qa{display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:start}
+.qa > *{min-width:0}
+.faq{display:grid;gap:10px}
+.faq details{background:var(--surface);border:1px solid var(--line);border-radius:8px}
+.faq details[open]{border-color:var(--blue)}
+.faq summary{cursor:pointer;list-style:none;padding:15px 44px 15px 18px;font-weight:600;position:relative;display:flex;gap:10px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:18px;top:12px;font-size:20px;color:var(--muted)}
+.faq details[open] summary::after{content:"\2212"}
+.faq summary b{font-family:var(--f-mono);color:var(--accent)}
+.faq .ans{padding:0 18px 16px 18px;color:var(--muted);font-size:15px;line-height:1.7}
+.faq .ans p{margin:0 0 8px}
+.qa h3.qhead{font-size:17px;margin:0 0 6px}
+.qa .qnote{font-size:13.5px;color:var(--muted);margin:0 0 4px}
+@media (max-width:900px){.qa{grid-template-columns:1fr}}
+/* 방문자 수 */
+.visits{display:flex;gap:14px;flex-wrap:wrap;font-family:var(--f-mono);font-size:12.5px;opacity:.85}
+.visits[hidden]{display:none}
+.visits b{font-weight:600;color:var(--slogan)}
+footer{background:var(--deep);color:var(--deep-ink);font-size:13.5px}
+footer .wrap{padding-block:36px;display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between}
+footer p{opacity:.8}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+section[id],.hero{scroll-margin-top:110px}
+</style>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="RBSS home">
+      <img class="brand-logo" src="../logo.png" alt="Risk Based Safety Solutions logo"><span class="brand-name">RBSS<small>Risk Based Safety Solutions</small></span>
+    </a>
+    <nav class="main" aria-label="Main menu">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experts" data-open-experts>Our Experts</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#projects">Track Record</a></li>
+        <li><a href="#library">Resources</a></li>
+        <li><a href="#qa">Q&amp;A</a></li>
+        <li><a class="cta" href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="lang-sw" role="group" aria-label="Language"><a href="../" hreflang="ko" lang="ko">한국어</a><a href="./" hreflang="en" aria-current="true">EN</a></div>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="gov"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M6 10.5l2.6 2.6L14.5 7" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>Designated Safety Management Agency (MOEL, Korea)</span>
+      <h1>Beyond compliance:<br><em>process safety</em> that works in the field.</h1>
+      <p class="lead">Our experts have built and run Process Safety Management programs since PSM was introduced in Korea in 1995. From PSM report approval and HAZOP to risk assessment and safety culture assessment, we work from the actual risks of your site.</p>
+      <div class="actions">
+        <a class="btn primary" href="#contact">Request a PSM consultation</a>
+        <a class="btn ghost" href="#services">View services</a>
+      </div>
+      <p class="slogan">Safety is not the absence of incidents.<br>Safety is when protective systems function as intended.</p>
+      <div class="facts">
+        <div><strong>35</strong><span>Years in the field</span></div>
+        <div><strong>3</strong><span>Principal &amp; experts</span></div>
+        <div><strong>12</strong><span>PSM elements covered</span></div>
+      </div>
+    </div>
+    <figure class="scene-wrap" aria-label="3D process plant surrounded by six layers of protection (LOPA)">
+      <div class="scene" id="scene">
+        <span class="hud">LAYERS OF PROTECTION · 3D</span>
+        <span class="hint">Drag to rotate</span>
+      </div>
+      <ul class="layers" id="layers"></ul>
+      <p class="layerdesc" id="layerdesc">Tap each layer of protection. An accident happens only when every layer fails at the same time.</p>
+    </figure>
+  </div>
+</div>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag"><b><i>01</i></b>About RBSS</span>
+      <h2>RBSS Co., Ltd.</h2>
+      <p>Risk Based Safety Solutions. A specialist process safety consultancy that raises the process safety performance of industrial sites through a risk-based approach.</p>
+    </div>
+    <div class="about-grid">
+      <div class="greeting">
+        <p>Welcome. I am Kyung-Jin Lee, Principal Consultant of RBSS.</p>
+        <p>RBSS is a specialist consultancy that pursues field-oriented Risk Based Process Safety and provides total solutions for process safety.</p>
+        <p>Our aim is to be the consultancy that delivers the most effective PSM support and capability building to chemical plants and general industrial sites in Korea. Drawing on 35 years of field experience, we help sites go beyond legal requirements and manage their own risks.</p>
+        <p class="sign">Kyung-Jin Lee, Principal Consultant, RBSS</p>
+        <dl class="kv">
+          <div><dt>Company</dt><dd>RBSS Co., Ltd. (주식회사 알비에스에스)</dd></div>
+          <div><dt>Status</dt><dd>Safety Management Agency designated by the Ministry of Employment and Labor (outsourced safety manager services)</dd></div>
+          <div><dt>Business reg. no.</dt><dd>348-81-03742</dd></div>
+          <div><dt>Founded</dt><dd>November 2025</dd></div>
+          <div><dt>Locations</dt><dd>Head office: 216 Jeongchaebong-gil, Haeryong-myeon, Suncheon-si, Jeollanam-do, Korea<br>Songdo office: Room 1903, Tower S, IT Center, Songdo Techno Park, 32 Songdogwahak-ro, Yeonsu-gu, Incheon, Korea</dd></div>
+        </dl>
+      </div>
+      <article class="profile">
+        <img class="portrait" src="../ceo.jpg" alt="Kyung-Jin Lee, Principal Consultant of RBSS">
+        <span class="tag" style="margin-bottom:12px"><b><i>CEO</i></b>Principal Consultant</span>
+        <h3>Kyung-Jin Lee <span style="font-weight:500;font-size:16px;color:var(--muted)" lang="ko">이경진</span></h3>
+        <p class="role">Ph.D · Certified Industrial Safety Consultant (Chemical) · 35 years in the field</p>
+        <div class="chips">
+          <span class="chip hot">HAZOP &amp; CA</span><span class="chip hot">PSM Assessment</span><span class="chip">Risk Assessment</span><span class="chip">PSM Grade Improvement</span><span class="chip">Safety Culture</span>
+        </div>
+        <dl class="kv">
+          <div><dt>Career</dt><dd>KBR, Technical Safety Lead, Iraq CSSP Project (May 2026 to present)<br>Principal Consultant, RBSS (currently on temporary business suspension)<br>GS Caltex, Safety &amp; Health Planning Team<br>Samsung Fire &amp; Marine Insurance, Risk Engineering Center, Senior Risk Surveyor<br>Daelim Industrial, Petrochemical Division (PSM set-up and maintenance)
+            <p class="ov-h">Overseas assignments and international companies</p>
+            <ul class="ov">
+              <li><b>KBR · Iraq CSSP Project</b> (May 2026 to present)<br>PMC Technical Safety Lead for TotalEnergies' Iraq Common Seawater Supply Project. Leads PMC technical safety in detailed design; reviews EPC contractor HSE and technical safety deliverables and vendor proposals including fire protection systems against TotalEnergies GS-GR-HSE specifications; reviews HAZID, HAZOP, SIL and fire and explosion risk assessments.</li>
+              <li><b>Budapest, Hungary · Samsung SDI Hungary</b> (Oct 2023 to Oct 2025)<br>Director, Safety Advisor. Safety advisory for the Plant 2-2 expansion and modification project at a lithium-ion battery manufacturing plant.</li>
+              <li><b>Matheson Gas Production Korea</b> (Aug 2022 to Oct 2023)<br>Director, EHS Team Leader. Overall EHS management of a specialty gas production facility for the semiconductor industry.</li>
+              <li><b>DNV Korea</b> (Mar 2022 to Aug 2022)<br>Principal Consultant. HAZOP for hydrogen projects, Bow-Tie analysis, and ISRS (International Safety Rating System) consulting.</li>
+              <li><b>Kuwait · Kuwait Oil Company (KOC) Headquarters</b> (Nov 2017 to May 2019)<br>Project Safety Engineer. Operated project HSE procedures for the national oil company, reviewed risk reports, and managed EHS for GC projects.</li>
+              <li><b>Siemens Energy Solutions</b> (Apr 2014 to Jun 2015)<br>Director, HSE Manager. HSE management of two power plant projects in Korea and set-up of the EHS system for the Korea branch.</li>
+              <li><b>Iraq · Australia · Samsung Engineering, Design HSE</b> (Oct 2013 to Mar 2014)<br>Design HSE for the BADRA Project (Iraq) and the INPEX Ichthys CPF Project (Australia, SIL gap closing); proposal support for a UAE offshore project.</li>
+              <li><b>Abu Dhabi, UAE · Samsung Engineering, SGD U&amp;O Project</b> (Sep 2010 to Mar 2013)<br>Project HSE Manager (with Fluor as PMC, USD 1.5 billion project). Managed 50 HSE staff and 8,000 subcontractor workers, achieving 36 million man-hours without LTI.</li>
+              <li><b>UAE · Samsung Engineering, Borouge 2 &amp; 3 Projects</b> (Aug 2009 to Sep 2010)<br>HSE Manager (Tecnimont J/V). Commissioning HSE plan, PSSR and HAZARD Study 4/5 for the Borouge 2 OCU, achieving 6.5 million man-hours without LTI; developed HSE procedures and plans for Borouge 3 PO and LDPE (USD 900 million).</li>
+              <li><b>Kuwait · Saudi Arabia · Thailand · Egypt · GS Engineering &amp; Construction</b> (May 2007 to Jan 2008)<br>Project HSE Manager. Supported HSE system set-up for overseas plant projects and new project proposals.</li>
+              <li><b>Skikda, Algeria · Daelim Industrial, HDPE Rehabilitation Project</b> (May 2005 to Apr 2006)<br>HSE Manager. Established the safety management system and process safety management for the new plant.</li>
+              <li><b>Asaluyeh, Iran · Daelim Industrial, South Pars Gas Project</b> (Nov 2004 to Apr 2005)<br>Precommissioning Lead Engineer (JGC/TOYO J/V). Prepared commissioning manuals and start-up P&amp;IDs.</li>
+            </ul>
+          </dd></div>
+        </dl>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag"><b><i>02</i></b>Services</span>
+      <h2>Services</h2>
+      <p>We support the full process safety lifecycle, from PSM report submission and approval to risk assessment, Serious Accidents Punishment Act compliance and safety culture.</p>
+    </div>
+    <div class="areas">
+      <article class="area"><span class="k">AREA 1</span><h3>Risk Assessment</h3><p>HAZOP and CA (worst-case and alternative release scenarios)</p></article>
+      <article class="area"><span class="k">AREA 2</span><h3>PSM Grade Improvement</h3><p>Capability training and internal audits</p></article>
+      <article class="area"><span class="k">AREA 3</span><h3>Serious Accidents Punishment Act</h3><p>Safety assessments and audits</p></article>
+      <article class="area"><span class="k">AREA 4</span><h3>Safety Culture</h3><p>Training and safety management system development</p></article>
+      <article class="area"><span class="k">AREA 5</span><h3>Outsourced Safety Management</h3><p>Contracted safety manager and safety &amp; health officer services</p></article>
+      <article class="area"><span class="k">AREA 6</span><h3>Safety Training</h3><p>Safety training and Learning Team Program</p></article>
+    </div>
+    <div class="svc-grid">
+      <article class="svc"><span class="code">SVC-01 · PSM</span><h3>PSM Report Preparation &amp; Approval</h3><p>We handle the whole submission: accurate, systematic collection of process safety information, industry-specific procedures for all 12 PSM elements, permitting engineering such as hazardous area classification drawings, and training for the implementation assessment.</p></article>
+      <article class="svc"><span class="code">SVC-02 · HAZOP</span><h3>HAZOP Studies</h3><p>We run HAZOP on P&amp;IDs verified against the field, identify process hazards and recommend practical, actionable safeguards.</p></article>
+      <article class="svc"><span class="code">SVC-03 · QRA</span><h3>Consequence Analysis &amp; QRA</h3><p>We model worst-case and alternative release scenarios with tools such as PHAST, and feed the results into emergency response plan revisions and plant layout reviews.</p></article>
+      <article class="svc"><span class="code">SVC-04 · LOPA</span><h3>Layer of Protection Analysis (LOPA)</h3><p>We evaluate independent protection layers (IPLs) for high-risk HAZOP scenarios and identify additional safeguards needed to meet the target risk level.</p></article>
+      <article class="svc"><span class="code">SVC-05 · AUDIT</span><h3>PSM Assessment &amp; Internal Audit</h3><p>We assess PSM implementation and conduct internal audits, moving sites from paper compliance to practical operation of each element.</p></article>
+      <article class="svc"><span class="code">SVC-06 · CULTURE</span><h3>Safety Culture Assessment</h3><p>Using international standards such as ISRS, we assess safety culture and safety management system maturity and build an improvement roadmap.</p></article>
+      <article class="svc"><span class="code">SVC-07 · SAPA</span><h3>Serious Accidents Punishment Act Compliance</h3><p>Through safety and health management system reviews, assessments and audits, we verify how top management is meeting its legal duties and set out the gaps to close.</p></article>
+      <article class="svc"><span class="code">SVC-08 · OUTSOURCE</span><h3>Outsourced Safety Manager Services</h3><p>As a designated safety management agency, we take on the duties of the safety manager and the safety &amp; health officer and carry out your site's statutory safety management.</p></article>
+      <article class="svc"><span class="code">SVC-09 · EDU</span><h3>Training &amp; Learning Teams</h3><p>Hands-on training for everyone from PSM beginners to practitioners, and a Learning Team Program where frontline workers learn and improve together.</p></article>
+    </div>
+
+    <div class="psm12">
+      <h3>All 12 elements of Korean PSM</h3>
+      <p>For each of the 12 PSM elements required under the Occupational Safety and Health Act, we provide site-specific procedures and implementation know-how.</p>
+      <ol>
+        <li>Process Safety Information</li><li>Process Hazard Analysis</li><li>Safe Operating Procedures</li><li>Inspection, Testing &amp; Maintenance</li>
+        <li>Safe Work Permits</li><li>Contractor Safety Management</li><li>Training</li><li>Pre-Startup Safety Review</li>
+        <li>Management of Change</li><li>Compliance Audits</li><li>Incident Investigation</li><li>Emergency Response Plan</li>
+      </ol>
+    </div>
+
+    <div class="why">
+      <div><h3>Hands-on since PSM began in Korea</h3><p>Our principal spent about ten years from 1995 establishing and running PSM at Yeochun NCC, including HAZOP of every process unit, and leads permitting personally.</p></div>
+      <div><h3>Risk management beyond compliance</h3><p>We verify the risks in your process first-hand and aim for detailed, accurate risk management that goes beyond meeting legal requirements.</p></div>
+      <div><h3>Procedures that work on site</h3><p>We write procedures your people can actually follow, and train them for the implementation assessment.</p></div>
+      <div><h3>Close, ongoing support</h3><p>We stay with you beyond the report into day-to-day operation, so your team understands and implements the system.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag"><b><i>03</i></b>Track Record</span>
+      <h2>Track Record</h2>
+      <p>Selected projects delivered by our principal consultant and senior experts.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Year</th><th>Client type / project</th><th>Scope</th><th>Field</th></tr></thead>
+        <tbody>
+          <tr><td class="yr">2026</td><td>Automotive manufacturer, production plant (Korea)</td><td>PSM internal audit</td><td><span class="pill">PSM Audit</span></td></tr>
+          <tr><td class="yr">2022–24</td><td>Hydrogen plant project</td><td>HAZOP study</td><td><span class="pill">HAZOP</span></td></tr>
+          <tr><td class="yr">2022–24</td><td>Large petrochemical complex</td><td>HAZOP study</td><td><span class="pill">HAZOP</span></td></tr>
+          <tr><td class="yr">2022–24</td><td>Two steelworks of a Korean steel company</td><td>ISRS assessment</td><td><span class="pill">Safety Culture</span></td></tr>
+          <tr><td class="yr">2019–22</td><td>Korean refining company</td><td>Safety assessments of production sites and logistics centers, HAZOP of an R&amp;D HDPE pilot plant, safety culture program for subsidiaries, revision of emergency scenarios (PHAST)</td><td><span class="pill">Assessment · HAZOP · QRA</span></td></tr>
+          <tr><td class="yr">2017</td><td>Middle East national oil company project</td><td>HSE system assessment</td><td><span class="pill">HSE Assessment</span></td></tr>
+          <tr><td class="yr">2008</td><td>Refinery upgrading (HOU) project</td><td>HSE report review and logistics center safety assessment</td><td><span class="pill">HSE Assessment</span></td></tr>
+          <tr><td class="yr">1996–2002</td><td>Korean petrochemical company</td><td>PSM set-up and maintenance; HAZOP of NCC, BTX, SM, MTBE, BD, PB, LDPE, HDPE and PP units</td><td><span class="pill">PSM·HAZOP</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">To protect client confidentiality, clients are listed by industry.</p>
+  </div>
+</section>
+
+<section id="library">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag"><b><i>04</i></b>Resources</span>
+      <h2>Resources</h2>
+      <p>Free PSM materials you can put straight to use in process safety practice. The documents are currently in Korean.</p>
+    </div>
+    <h3 class="libgroup">PSM materials <span class="open">Free</span></h3>
+    <div class="lib">
+      <a class="doc" href="../docs/rbss-psm-guide.pdf" target="_blank" rel="noopener"><span class="ftype">PDF</span><div><h3>PSM Report Submission Guide</h3><p>Who must submit, report structure, the submission, review, verification and implementation assessment process, and common deficiencies</p></div><span class="status on">Open PDF (Korean) ↗</span></a>
+      <a class="doc" href="../docs/rbss-psm-12-elements.pdf" target="_blank" rel="noopener"><span class="ftype">PDF</span><div><h3>PSM 12 Elements Practical Checklist</h3><p>What to prepare for each element and what to verify on site</p></div><span class="status on">Open PDF (Korean) ↗</span></a>
+      <a class="doc" href="../docs/rbss-psm-vs-rbps.pdf" target="_blank" rel="noopener"><span class="ftype">PDF</span><div><h3>Korean PSM vs RBPS</h3><p>Mapping of the 12 Korean PSM elements to the 20 elements of Risk Based Process Safety (RBPS), and five areas worth strengthening</p></div><span class="status on">Open PDF (Korean) ↗</span></a>
+      <a class="doc" href="../docs/rbss-psm-roadmap.pdf" target="_blank" rel="noopener"><span class="ftype">PDF</span><div><h3>PSM Roadmap</h3><p>A five-stage path: assessment, set-up, embedding, grade improvement and risk-based advancement</p></div><span class="status on">Open PDF (Korean) ↗</span></a>
+    </div>
+    <h3 class="libgroup">Other materials</h3>
+    <div class="lib">
+      <article class="doc"><span class="ftype">XLSX</span><div><h3>HAZOP Worksheet Template</h3><p>Standard template for node, guide word, deviation, causes, consequences and safeguards</p></div><span class="status">Coming soon</span></article>
+      <article class="doc"><span class="ftype">PDF</span><div><h3>Serious Accidents Punishment Act Guide</h3><p>Duties of top management and checklist items for the safety and health management system</p></div><span class="status">Coming soon</span></article>
+      <article class="doc"><span class="ftype">PDF</span><div><h3>Professional Engineer Exam Notes</h3><p>Model-answer notes on PSM applicability and the R value, implementation assessment, MOC, emergency response plans and more</p></div><span class="status">To be released</span></article>
+    </div>
+    <div class="links">
+      <a href="https://www.kosha.or.kr" target="_blank" rel="noopener">Korea Occupational Safety and Health Agency (KOSHA) ↗</a>
+      <a href="https://www.law.go.kr" target="_blank" rel="noopener">Korea Law Information Center ↗</a>
+      <a href="https://www.moel.go.kr" target="_blank" rel="noopener">Ministry of Employment and Labor ↗</a>
+    </div>
+  </div>
+</section>
+
+<section id="qa">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag"><b><i>05</i></b>Q&amp;A</span>
+      <h2>Frequently Asked Questions</h2>
+      <p>Common questions about process safety management in Korea and RBSS services. Ask us anything using the form.</p>
+    </div>
+    <div class="qa">
+      <div class="faq">
+        <details><summary><b>Q1</b>Does our site have to submit a Process Safety Management (PSM) report?</summary><div class="ans"><p>In Korea, a PSM report is required if your site is in a designated industry such as crude oil refining, petrochemicals, chemical fertilizers or explosives, or if it manufactures, handles or stores designated hazardous substances above threshold quantities (Occupational Safety and Health Act Article 44, Enforcement Decree Article 43).</p><p>Inventories of different substances must be combined to decide, so send us your list of substances and maximum inventories and we will review applicability with you.</p></div></details>
+        <details><summary><b>Q2</b>When is the PSM report due, and how long does it take to prepare?</summary><div class="ans"><p>When you install, relocate or make major changes to hazardous facilities, the report must be submitted to KOSHA at least 30 days before construction starts.</p><p>Preparation usually takes several months, depending on process size and the state of existing documentation. Process safety information, hazard analysis (HAZOP etc.), safe operating plans and the emergency response plan are prepared in sequence, so we recommend starting early.</p></div></details>
+        <details><summary><b>Q3</b>How can we raise our PSM implementation assessment grade (P, S, M+, M-)?</summary><div class="ans"><p>The grade reflects whether the 12 elements actually work in the field, not just on paper. Start with areas that are often cited in assessments, such as management of change (MOC), inspection and maintenance, work permits and training records.</p><p>RBSS finds the gaps through internal audits aligned with the assessment criteria, then supports practitioner training and improvement planning.</p></div></details>
+        <details><summary><b>Q4</b>Is a HAZOP or other risk assessment a one-time exercise?</summary><div class="ans"><p>No. When equipment or operating conditions change, the risk assessment must be redone under the management of change procedure, and it should be revalidated after incidents or near misses and at regular intervals to stay current.</p><p>We select the right technique for your process, such as HAZOP, Checklist, What-if or LOPA.</p></div></details>
+        <details><summary><b>Q5</b>Where should we start with the Serious Accidents Punishment Act?</summary><div class="ans"><p>The starting point is a safety and health management system: safety and health goals and policy set by top management, procedures to identify and control hazards, adequate budget and staff, semi-annual reviews, and records that prove implementation.</p><p>RBSS assesses your current system and sets out the gaps and priorities.</p></div></details>
+        <details><summary><b>Q6</b>Can we outsource the safety manager role?</summary><div class="ans"><p>Sites with fewer than 300 regular employees can entrust safety manager duties to a safety management agency designated by the Ministry of Employment and Labor (some industries excluded). Safety and health officer duties at smaller sites can also be outsourced.</p><p>As a designated agency, RBSS provides regular site visits, risk assessments, training and record keeping. Tell us your industry and headcount and we will confirm eligibility.</p></div></details>
+        <details><summary><b>Q7</b>How does an engagement work, and how is the fee set?</summary><div class="ans"><p>Consultation, then a site visit and document review, then a proposal on scope, schedule and fee, then delivery and follow-up support.</p><p>Fees depend on process size, scope and existing documentation, so we quote after the site visit. The first consultation carries no obligation.</p></div></details>
+        <details><summary><b>Q8</b>Where can you deliver training and site visits?</summary><div class="ans"><p>From our Suncheon head office and Songdo (Incheon) office we visit sites anywhere in Korea, and we work on international projects. Safety culture training, practical PSM training and the Learning Team Program can be held on site to suit your schedule, in Korean or English.</p></div></details>
+        <p class="note">Regulations may change. We confirm how they apply based on the latest law and your site conditions.</p>
+      </div>
+      <form id="qform" novalidate>
+        <div>
+          <h3 class="qhead">Ask a question</h3>
+          <p class="qnote">Our principal consultant answers every question personally. Frequently asked questions may be added to the FAQ without personal details.</p>
+        </div>
+        <label for="q-name">Name / company (optional)<input id="q-name" name="name" placeholder="e.g. Jane Smith / ABC Chemicals"></label>
+        <label for="q-reply">Email or phone for our reply<input id="q-reply" name="reply" placeholder="example@company.com"></label>
+        <label for="q-msg">Your question<textarea id="q-msg" name="question" placeholder="e.g. If we increase storage tank capacity, do we need to resubmit the PSM report?"></textarea></label>
+        <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+          <button class="btn primary" type="submit">Send question</button>
+          <span class="formmsg" id="qmsg" role="status" hidden></span>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag"><b><i>06</i></b>Contact</span>
+      <h2>Contact Us</h2>
+      <p>Tell us what you need, whether a new PSM report, implementation assessment preparation, HAZOP or risk assessment, and our experts will review it and get back to you. We work in Korean and English.</p>
+    </div>
+    <div class="contact">
+      <div class="cinfo">
+        <dl>
+          <div><dt>Principal Consultant</dt><dd>Kyung-Jin Lee (Ph.D, Certified Industrial Safety Consultant, Chemical)</dd></div>
+          <div><dt>Mobile</dt><dd>+82-10-5285-3814</dd></div>
+          <div><dt>Fax</dt><dd>+82-70-7543-3824</dd></div>
+          <div><dt>Email</dt><dd>kyungjinlee32@gmail.com</dd></div>
+          <div><dt>Address</dt><dd>Head office: 216 Jeongchaebong-gil, Haeryong-myeon, Suncheon-si, Jeollanam-do 58020, Republic of Korea<br>Songdo office: Room 1903, Tower S, IT Center, Songdo Techno Park, 32 Songdogwahak-ro, Yeonsu-gu, Incheon 21984, Republic of Korea</dd></div>
+          <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/kyung-jin-lee-18565110a" target="_blank" rel="noopener">linkedin.com/in/kyung-jin-lee-18565110a ↗</a></dd></div>
+          <div><dt>Business registration no.</dt><dd>348-81-03742</dd></div>
+        </dl>
+      </div>
+      <form id="inq" novalidate>
+        <div class="row2">
+          <label for="f-company">Company<input id="f-company" name="company" placeholder="e.g. ABC Chemicals, Ulsan plant"></label>
+          <label for="f-name">Contact person<input id="f-name" name="name" placeholder="Name / title"></label>
+        </div>
+        <div class="row2">
+          <label for="f-contact">Phone or email<input id="f-contact" name="contact" placeholder="Phone or email"></label>
+          <label for="f-type">Topic
+            <select id="f-type" name="type">
+              <option>New PSM report submission</option>
+              <option>PSM implementation assessment / internal audit</option>
+              <option>HAZOP / LOPA</option>
+              <option>QRA / consequence analysis</option>
+              <option>Safety culture assessment</option>
+              <option>Training</option>
+              <option>Other</option>
+            </select>
+          </label>
+        </div>
+        <label for="f-msg">Message<textarea id="f-msg" name="msg" placeholder="Tell us about the process, substances handled and your timeline so we can advise you accurately."></textarea></label>
+        <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+          <button class="btn primary" type="submit">Send inquiry</button>
+          <span class="formmsg" id="formmsg" role="status" hidden></span>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<dialog id="experts" class="exp-dlg" aria-labelledby="exp-title">
+  <div class="exp-dlg-head">
+    <div>
+      <span class="tag"><b><i>RBSS</i></b>Experts</span>
+      <h2 id="exp-title">Our Experts</h2>
+      <p>Process design, EPC project management, production operations and permitting. Senior experts with over 30 years in the field each take part in our projects directly.</p>
+    </div>
+    <button type="button" class="exp-close" aria-label="Close">&times;</button>
+  </div>
+  <div class="experts">
+      <article class="expert">
+        <span class="field">Senior Technical Expert</span>
+        <h3>Sung-Seok Yang <span style="font-weight:500;font-size:15px;color:var(--muted)" lang="ko">양성석</span></h3>
+        <span class="yrs">Professional Engineer (Chemical) · 39 years of experience</span>
+        <div class="chips"><span class="chip">Process Engineering</span><span class="chip">Project &amp; Risk Management</span></div>
+        <ul>
+          <li>EPC Project Manager, Seian STX Entech</li>
+          <li>Production &amp; Technical General Manager, Korea PTG</li>
+          <li>Flare System Project, Russian refinery (2014 to 2024)</li>
+          <li>Ethyl Acetate Project, Saudi petrochemical company (2006 to 2014)</li>
+          <li>MMA Project, Korean petrochemical company (1996 to 2000)</li>
+        </ul>
+      </article>
+      <article class="expert">
+        <span class="field">Senior PSM Expert</span>
+        <h3>Gwi-Sung Choi <span style="font-weight:500;font-size:15px;color:var(--muted)" lang="ko">최귀성</span></h3>
+        <span class="yrs">Process safety and fire protection specialist · 35 years of experience</span>
+        <div class="chips"><span class="chip">PSM, Fire &amp; Gas Permitting</span><span class="chip">Master Craftsman, Hazardous Materials</span></div>
+        <ul>
+          <li>Deputy General Manager, Safety &amp; Health, DL Chemical Yeosu Plant (1991 to 2026)</li>
+          <li>Adjunct Professor, Dept. of Electrical &amp; Fire Protection, Hanyoung University</li>
+          <li>Minister of Employment and Labor Award (2018); Yeosu Mayor's Award for Safety Management (2025)</li>
+          <li>Licensed Engineer in Industrial Safety, Construction Safety, Fire Protection Systems and Fire Investigation, among others</li>
+        </ul>
+      </article>
+    </div>
+</dialog>
+
+<footer>
+  <div class="wrap">
+    <div><strong>RBSS Co., Ltd. (Risk Based Safety Solutions)</strong><p>Designated Safety Management Agency · Business reg. no. 348-81-03742</p><p>Tel +82-10-5285-3814 · Fax +82-70-7543-3824 · kyungjinlee32@gmail.com</p></div>
+    <div><p>© 2026 RBSS Risk Based Safety Solutions</p><p class="visits" id="visits" hidden><span id="v-today-w" hidden>Today <b id="v-today">-</b></span><span>Total visits <b id="v-total">-</b></span></p></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var d=document.getElementById('experts');if(!d||!d.showModal)return;
+  function open(e){if(e)e.preventDefault();if(!d.open)d.showModal();}
+  document.querySelectorAll('[data-open-experts],a[href="#experts"]').forEach(function(a){a.addEventListener('click',open);});
+  d.querySelector('.exp-close').addEventListener('click',function(){d.close();});
+  d.addEventListener('click',function(e){if(e.target===d)d.close();});
+  if(location.hash==='#experts')open();
+})();
+</script>
+<script>
+/* Q&A form: sends to the same FormSubmit address as the contact form */
+(function(){
+  var f=document.getElementById('qform');if(!f)return;
+  var msg=document.getElementById('qmsg'),btn=f.querySelector('button[type=submit]');
+  function show(t,ok){msg.textContent=t;msg.style.color=ok?'var(--r1)':'var(--accent)';msg.hidden=false;}
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var v=function(id){return document.getElementById(id).value.trim();};
+    if(!v('q-reply')||!v('q-msg')){show('Please enter your email or phone and your question.',false);return;}
+    btn.disabled=true;show('Sending…',true);
+    fetch('https://formsubmit.co/ajax/kyungjinlee32@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({_subject:'[RBSS 홈페이지 Q&A 질문 · English] '+v('q-msg').slice(0,30),_template:'table',_captcha:'false',
+        'Name/company':v('q-name'),'Reply to':v('q-reply'),'Question':v('q-msg'),'Language':'English site'})})
+    .then(function(r){return r.json().catch(function(){return {};}).then(function(j){return {ok:r.ok&&String(j.success)!=='false',m:String(j.message||'')};});})
+    .then(function(r){
+      if(/activat/i.test(r.m)){show('The question form needs to be activated by the site administrator. Please email kyungjinlee32@gmail.com directly.',false);return;}
+      if(!r.ok)throw 0;f.reset();show('Thank you. Your question has been received and we will reply to the contact you provided.',true);})
+    .catch(function(){show('Sending failed. Please email kyungjinlee32@gmail.com.',false);})
+    .finally(function(){btn.disabled=false;});
+  });
+})();
+</script>
+<!-- Visitor counter: GoatCounter (site code rbss-safety). -->
+<script>
+(function(){
+  var GC_CODE='rbss-safety';
+  if(!GC_CODE||/^(localhost|127\.)/.test(location.hostname)||location.protocol==='file:')return;
+  var base='https://'+GC_CODE+'.goatcounter.com';
+  window.goatcounter={no_onload:false};
+  var s=document.createElement('script');s.async=true;s.src='//gc.zgo.at/count.js';s.setAttribute('data-goatcounter',base+'/count');
+  document.head.appendChild(s);
+  var box=document.getElementById('visits');if(!box||!window.fetch)return;
+  function get(q){return fetch(base+'/counter/TOTAL.json'+q).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(j){return j.count;});}
+  var d=new Date(),p=function(n){return (n<10?'0':'')+n;},today=d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate());
+  get('').then(function(c){document.getElementById('v-total').textContent=c;box.hidden=false;
+    return get('?start='+today).then(function(t){document.getElementById('v-today').textContent=t;document.getElementById('v-today-w').hidden=false;});
+  }).catch(function(){});
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  (function(){
+    var f=document.getElementById('inq'),msg=document.getElementById('formmsg'),btn=f.querySelector('button[type=submit]');
+    function show(t,ok){msg.textContent=t;msg.style.color=ok?'var(--r1)':'var(--accent)';msg.hidden=false;}
+    f.addEventListener('submit',function(e){
+      e.preventDefault();
+      var v=function(id){return document.getElementById(id).value.trim();};
+      if(!v('f-contact')||!v('f-msg')){show('Please enter your phone or email and a message.',false);return;}
+      btn.disabled=true;show('Sending…',true);
+      fetch('https://formsubmit.co/ajax/kyungjinlee32@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify({_subject:'[RBSS 홈페이지 문의 · English] '+v('f-type')+' - '+(v('f-company')||'No company'),_template:'table',_captcha:'false',
+          'Company':v('f-company'),'Contact person':v('f-name'),'Phone/email':v('f-contact'),'Topic':v('f-type'),'Message':v('f-msg'),'Language':'English site'})})
+      .then(function(r){return r.json().catch(function(){return {};}).then(function(j){return {ok:r.ok&&String(j.success)!=='false',m:String(j.message||'')};});})
+      .then(function(r){
+        if(/activat/i.test(r.m)){show('The inquiry form needs to be activated by the site administrator. Please email kyungjinlee32@gmail.com directly.',false);return;}
+        if(!r.ok)throw 0;f.reset();show('Thank you. Your inquiry has been received and we will be in touch.',true);})
+      .catch(function(){show('Sending failed. Please call +82-10-5285-3814 or email kyungjinlee32@gmail.com.',false);})
+      .finally(function(){btn.disabled=false;});
+    });
+  })();
+
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- 방호계층 정의 (안쪽 → 바깥쪽) ---------- */
+  var LAYERS=[
+    {n:'Process design',c:'#5DA6E6',d:'Inherently safer design: minimize hazardous inventories and build margin into design pressure and materials.'},
+    {n:'Basic process control (BPCS)',c:'#4FA3C7',d:'Automatically keeps temperature, pressure and level within the normal operating envelope.'},
+    {n:'Alarms and operator response',c:'#7FB56B',d:'Alarms on abnormal conditions and operator action by procedure. Operating procedures and training are key.'},
+    {n:'Safety instrumented system (SIS)',c:'#D9B53A',d:'An independent SIS trips the process automatically on hazardous conditions. Subject to SIL verification.'},
+    {n:'Physical protection (PSV)',c:'#E08A3C',d:'Relief valves and rupture discs relieve overpressure. Inspection, testing and maintenance keep them reliable.'},
+    {n:'Emergency response',c:'#D0564C',d:'Dikes, fire protection and the emergency response plan. Worst-case and alternative scenarios (CA) define the planning basis.'}
+  ];
+  var ul=document.getElementById('layers'),desc=document.getElementById('layerdesc'),btns=[],active=-1;
+  LAYERS.forEach(function(L,i){
+    var li=document.createElement('li'),b=document.createElement('button');
+    b.type='button';b.id='layer-'+i;b.setAttribute('aria-pressed','false');
+    b.innerHTML='<i style="background:'+L.c+'"></i>'+(i+1)+'. '+L.n;
+    b.addEventListener('click',function(){select(active===i?-1:i);});
+    b.addEventListener('mouseenter',function(){hover=i;});
+    b.addEventListener('mouseleave',function(){hover=-1;});
+    li.appendChild(b);ul.appendChild(li);btns.push(b);
+  });
+  var hover=-1;
+  function select(i){
+    active=i;
+    btns.forEach(function(b,k){b.setAttribute('aria-pressed',k===i?'true':'false');});
+    desc.textContent=i<0?'Tap each layer of protection. An accident happens only when every layer fails at the same time.':(i+1)+'. '+LAYERS[i].n+' · '+LAYERS[i].d;
+  }
+
+  /* ---------- 카드 3D 기울기 ---------- */
+  if(!reduce&&matchMedia('(hover:hover)').matches){
+    document.querySelectorAll('.expert,.area,.doc,.profile').forEach(function(el){
+      el.classList.add('tilt');
+      el.addEventListener('pointermove',function(e){
+        var r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+        el.style.transform='perspective(900px) rotateX('+(-y*6)+'deg) rotateY('+(x*8)+'deg) translateZ(4px)';
+      });
+      el.addEventListener('pointerleave',function(){el.style.transform='';});
+    });
+  }
+
+  /* ---------- 3D 플랜트 장면 ---------- */
+  var host=document.getElementById('scene');
+  function fallback(){var f=document.createElement('div');f.className='fallback';f.textContent='3D view is not available on this device. Use the list of protection layers below.';host.appendChild(f);}
+  if(!window.THREE){fallback();return;}
+  var renderer;
+  try{renderer=new THREE.WebGLRenderer({antialias:true,alpha:true,powerPreference:'low-power'});}catch(e){fallback();return;}
+  var mobile=matchMedia('(max-width:700px)').matches;
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,mobile?1.5:2));
+  host.insertBefore(renderer.domElement,host.firstChild);
+
+  var scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(36,1,.1,200);
+  var css=getComputedStyle(document.documentElement);
+  function tok(n,f){var v=css.getPropertyValue(n).trim();try{return new THREE.Color(v||f);}catch(e){return new THREE.Color(f);}}
+  scene.add(new THREE.HemisphereLight(0xe4f1ff,0x0a1a29,.95));
+  var sun=new THREE.DirectionalLight(0xffffff,.85);sun.position.set(8,14,6);scene.add(sun);
+
+  var world=new THREE.Group();scene.add(world);
+  var steel=new THREE.MeshStandardMaterial({color:0xcfd9e2,metalness:.55,roughness:.32});
+  var paint=new THREE.MeshStandardMaterial({color:0xf2f5f8,metalness:.15,roughness:.5});
+  var blueM=new THREE.MeshStandardMaterial({color:tok('--blue','#2F84CF'),metalness:.35,roughness:.4});
+  var redM=new THREE.MeshStandardMaterial({color:tok('--accent','#C0392F'),metalness:.25,roughness:.5});
+
+  var pad=new THREE.Mesh(new THREE.CylinderGeometry(6.4,6.4,.16,72),new THREE.MeshStandardMaterial({color:0x163f63,roughness:.95}));
+  pad.position.y=-.08;world.add(pad);
+  var grid=new THREE.PolarGridHelper(6.2,16,6,72,0x5da6e6,0x2a5a82);grid.position.y=.005;world.add(grid);
+
+  function cyl(r,h,x,z,m,y0){var g=new THREE.Mesh(new THREE.CylinderGeometry(r,r,h,mobile?20:32),m);g.position.set(x,(y0||0)+h/2,z);world.add(g);return g;}
+  function cap(r,x,y,z,m){var s=new THREE.Mesh(new THREE.SphereGeometry(r,24,12,0,Math.PI*2,0,Math.PI/2),m);s.position.set(x,y,z);world.add(s);}
+  function ring(r,x,y,z){var t=new THREE.Mesh(new THREE.TorusGeometry(r,.035,6,32),redM);t.rotation.x=Math.PI/2;t.position.set(x,y,z);world.add(t);}
+
+  // 증류탑 2기
+  cyl(.46,5.2,-1.3,-.7,steel);cap(.46,-1.3,5.2,-.7,steel);
+  [1.3,2.5,3.7,4.8].forEach(function(y){ring(.62,-1.3,y,-.7);});
+  cyl(.32,3.6,-.1,-1.8,steel);cap(.32,-.1,3.6,-1.8,steel);
+  [1.4,2.8].forEach(function(y){ring(.46,-.1,y,-1.8);});
+  // 구형 저장탱크 2기
+  [[2.2,-1.1],[2.4,1.3]].forEach(function(p){
+    var s=new THREE.Mesh(new THREE.SphereGeometry(.92,32,20),paint);s.position.set(p[0],1.35,p[1]);world.add(s);
+    for(var k=0;k<4;k++){var a=k*Math.PI/2+.6;cyl(.05,.9,p[0]+Math.cos(a)*.7,p[1]+Math.sin(a)*.7,steel);}
+  });
+  // 수평 드럼
+  var drum=new THREE.Mesh(new THREE.CylinderGeometry(.38,.38,2.2,28),paint);drum.rotation.z=Math.PI/2;drum.position.set(-.3,.75,1.7);world.add(drum);
+  cyl(.06,.4,-1,1.7,steel);cyl(.06,.4,.4,1.7,steel);
+  // 플레어 스택
+  cyl(.08,4.3,-3.5,1.5,steel);
+  var flame=new THREE.Mesh(new THREE.ConeGeometry(.16,.55,16),new THREE.MeshBasicMaterial({color:0xffa53a}));
+  flame.position.set(-3.5,4.6,1.5);world.add(flame);
+  var fl=new THREE.PointLight(0xff9a3a,1.2,6);fl.position.set(-3.5,4.7,1.5);world.add(fl);
+
+  // 배관
+  var up=new THREE.Vector3(0,1,0);
+  function pipe(a,b,r){
+    var A=new THREE.Vector3().fromArray(a),B=new THREE.Vector3().fromArray(b),d=B.clone().sub(A),len=d.length();
+    var m=new THREE.Mesh(new THREE.CylinderGeometry(r||.07,r||.07,len,10),blueM);
+    m.position.copy(A).add(B).multiplyScalar(.5);m.quaternion.setFromUnitVectors(up,d.normalize());world.add(m);
+    var e=new THREE.Mesh(new THREE.SphereGeometry((r||.07)*1.25,10,8),blueM);e.position.copy(B);world.add(e);
+  }
+  var PATHS=[
+    [[-1.3,4.9,-.7],[-1.3,5.5,-.7],[.9,5.5,-.7],[.9,2.4,-.7],[2.2,2.4,-1.1],[2.2,2.27,-1.1]],
+    [[-.1,1.0,-1.8],[-.1,.35,-1.8],[-1.3,.35,-1.8],[-1.3,.35,-.7]],
+    [[2.2,.5,-1.1],[2.2,.25,-1.1],[2.2,.25,1.3],[2.4,.25,1.3],[2.4,.5,1.3]],
+    [[.8,.75,1.7],[1.6,.75,1.7],[1.6,2.2,1.7],[2.4,2.2,1.3],[2.4,2.27,1.3]],
+    [[-1.4,.75,1.7],[-2.4,.75,1.7],[-2.4,.3,1.5],[-3.5,.3,1.5]],
+    [[-1.3,2.6,-.7],[-.4,2.6,-.7],[-.4,2.6,1.7],[-.3,1.13,1.7]]
+  ];
+  var segs=[];
+  PATHS.forEach(function(p){for(var i=0;i<p.length-1;i++){pipe(p[i],p[i+1]);}
+    var L=0,pts=p.map(function(a){return new THREE.Vector3().fromArray(a);}),cum=[0];
+    for(var j=1;j<pts.length;j++){L+=pts[j].distanceTo(pts[j-1]);cum.push(L);}
+    segs.push({pts:pts,cum:cum,len:L});
+  });
+  // 배관 속 흐름 입자
+  var flowM=new THREE.MeshBasicMaterial({color:tok('--slogan','#F2D33D')});
+  var parts=[],NP=mobile?22:40,pg=new THREE.SphereGeometry(.075,8,6);
+  for(var i=0;i<NP;i++){var m=new THREE.Mesh(pg,flowM);world.add(m);parts.push({m:m,s:segs[i%segs.length],t:Math.random()});}
+  function placeOn(p){
+    var s=p.s,d=p.t*s.len,k=1;while(k<s.cum.length-1&&s.cum[k]<d)k++;
+    var a=s.pts[k-1],b=s.pts[k],f=(d-s.cum[k-1])/((s.cum[k]-s.cum[k-1])||1);
+    p.m.position.lerpVectors(a,b,Math.min(1,f));
+  }
+
+  // 방호계층 링
+  var rings=[];
+  LAYERS.forEach(function(L,i){
+    var g=new THREE.Group();
+    var mat=new THREE.MeshBasicMaterial({color:new THREE.Color(L.c),transparent:true,opacity:.7});
+    var t=new THREE.Mesh(new THREE.TorusGeometry(3.6+i*.5,.03,8,mobile?96:160),mat);
+    t.rotation.x=Math.PI/2;g.add(t);
+    // 계층별 작은 마커 (센서/밸브)
+    for(var k=0;k<3;k++){var mk=new THREE.Mesh(new THREE.BoxGeometry(.14,.14,.14),mat);var a=k*Math.PI*2/3+i;mk.position.set(Math.cos(a)*(3.6+i*.5),0,Math.sin(a)*(3.6+i*.5));g.add(mk);}
+    g.position.y=.35+i*.48;g.rotation.z=(i%2?1:-1)*.06*(i+1)*.5;
+    world.add(g);rings.push({g:g,mat:mat,tube:t,base:g.position.y,spd:(i%2?-1:1)*(.05+i*.015)});
+  });
+  // 가장 바깥 반투명 돔
+  var dome=new THREE.Mesh(new THREE.SphereGeometry(6.3,40,16,0,Math.PI*2,0,Math.PI/2),new THREE.MeshBasicMaterial({color:new THREE.Color(LAYERS[5].c),wireframe:true,transparent:true,opacity:.07}));
+  world.add(dome);
+
+  // 상호작용: 드래그 회전 + 포인터 시차 + 스크롤 연동
+  var yaw=.7,drag=null,pointer={x:0,y:0},vis=true,scrollP=0;
+  host.addEventListener('pointerdown',function(e){drag={x:e.clientX,y0:yaw};host.setPointerCapture(e.pointerId);});
+  host.addEventListener('pointermove',function(e){
+    var r=host.getBoundingClientRect();pointer.x=(e.clientX-r.left)/r.width-.5;pointer.y=(e.clientY-r.top)/r.height-.5;
+    if(drag){yaw=drag.y0-(e.clientX-drag.x)*.008;if(reduce)draw(0);}
+  });
+  host.addEventListener('pointerup',function(){drag=null;});
+  host.addEventListener('pointercancel',function(){drag=null;});
+  host.addEventListener('pointerleave',function(){pointer.x=pointer.y=0;});
+  function onScroll(){var r=host.getBoundingClientRect();scrollP=Math.max(0,Math.min(1,(innerHeight*.5-r.top)/(innerHeight)));}
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  function resize(){var w=host.clientWidth,h=host.clientHeight;renderer.setSize(w,h,false);cam.aspect=w/h;cam.fov=w<520?46:36;cam.updateProjectionMatrix();if(reduce)draw(0);}
+  if(window.ResizeObserver){new ResizeObserver(resize).observe(host);}else{addEventListener('resize',resize);}
+  resize();
+  if(window.IntersectionObserver){new IntersectionObserver(function(es){vis=es[0].isIntersecting;if(vis&&!reduce)loop();}).observe(host);}
+
+  var clock=new THREE.Clock(),T=0,raf=0;
+  function draw(dt){
+    T+=dt;
+    var focus=hover>=0?hover:active;
+    rings.forEach(function(r,i){
+      r.g.rotation.y+=r.spd*dt;
+      var on=focus<0||focus===i;
+      r.mat.opacity+=((focus<0?.7:on?1:.12)-r.mat.opacity)*Math.min(1,dt*8||1);
+      var sc=focus===i?1+.04*Math.sin(T*4):1;r.tube.scale.set(sc,sc,1);
+      r.g.position.y=r.base+Math.sin(T*.8+i)*.05+scrollP*i*.25;
+    });
+    parts.forEach(function(p){p.t=(p.t+dt*.12*(3/p.s.len+.6))%1;placeOn(p);});
+    flame.scale.y=1+.18*Math.sin(T*13)+.1*Math.sin(T*7.3);fl.intensity=1.1+.3*Math.sin(T*11);
+    var a=yaw+(reduce?0:T*.06)+scrollP*.9+pointer.x*.25;
+    var R=cam.aspect<.9?17.5:15,H=6.2-scrollP*1.5+pointer.y*-.8;
+    cam.position.set(Math.cos(a)*R,H,Math.sin(a)*R);cam.lookAt(0,1.9,0);
+    renderer.render(scene,cam);
+  }
+  function loop(){
+    cancelAnimationFrame(raf);
+    (function f(){if(!vis)return;draw(Math.min(clock.getDelta(),.05));raf=requestAnimationFrame(f);})();
+  }
+  if(reduce){draw(0);btns.forEach(function(b){b.addEventListener('click',function(){draw(0);});});}
+  else{clock.getDelta();loop();}
+})();
+</script>
+
+</body>
+</html>

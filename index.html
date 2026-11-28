@@ -10,6 +10,8 @@
 <meta property="og:image" content="https://www.rbss-safety.com/logo.png">
 <meta property="og:url" content="https://www.rbss-safety.com/">
 <link rel="canonical" href="https://www.rbss-safety.com/">
+<link rel="alternate" hreflang="ko" href="https://www.rbss-safety.com/">
+<link rel="alternate" hreflang="en" href="https://www.rbss-safety.com/en/">
 <meta property="og:type" content="website">
 <link rel="icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -76,6 +78,11 @@ nav.main ul{display:flex;gap:4px;list-style:none;margin:0;padding:0;white-space:
 nav.main a{display:block;padding:6px 10px;border-radius:6px;text-decoration:none;font-size:14.5px;font-weight:500;color:var(--muted)}
 nav.main a:hover{color:var(--ink);background:var(--bg)}
 nav.main a.cta{background:var(--accent);color:var(--accent-ink)}
+.lang-sw{display:flex;align-items:center;flex-shrink:0;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.lang-sw a{display:block;padding:5px 9px;font-size:13px;font-weight:600;text-decoration:none;color:var(--muted)}
+.lang-sw a:hover{color:var(--ink);background:var(--bg)}
+.lang-sw a[aria-current]{background:var(--deep);color:var(--deep-ink)}
+@media (max-width:760px){header.site .wrap{position:relative}.brand{padding-right:100px}.lang-sw{position:absolute;right:max(16px,env(safe-area-inset-right,0px));top:16px}}
 @media (max-width:760px){header.site .wrap{flex-direction:column;align-items:stretch;gap:8px}nav.main{margin-left:0}}
 
 /* tag label (P&ID instrument bubble) */
@@ -299,6 +306,7 @@ section[id],.hero{scroll-margin-top:110px}
         <li><a class="cta" href="#contact">상담 문의</a></li>
       </ul>
     </nav>
+    <div class="lang-sw" role="group" aria-label="Language"><a href="./" hreflang="ko" aria-current="true">한국어</a><a href="en/" hreflang="en" lang="en">EN</a></div>
   </div>
 </header>
 

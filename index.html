@@ -171,6 +171,13 @@ section + section{border-top:1px solid var(--line)}
 .expert .yrs{color:var(--muted);font-size:14px}
 .expert ul{margin:10px 0 0;padding-left:18px;font-size:14.5px;display:grid;gap:4px}
 @media (max-width:900px){.experts{grid-template-columns:1fr}}
+.exp-dlg{width:min(960px,calc(100vw - 32px));max-height:calc(100vh - 48px);overflow:auto;padding:28px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+.exp-dlg::backdrop{background:rgba(10,20,35,.55)}
+.exp-dlg-head{display:flex;gap:16px;align-items:flex-start;justify-content:space-between;margin-bottom:20px}
+.exp-dlg-head h2{margin:8px 0 6px}
+.exp-dlg-head p{margin:0;color:var(--muted)}
+.exp-close{flex:none;width:40px;height:40px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-size:24px;line-height:1;cursor:pointer}
+@media (max-width:520px){.exp-dlg{padding:18px}}
 
 /* services */
 .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
@@ -259,7 +266,7 @@ section[id],.hero{scroll-margin-top:110px}
     <nav class="main" aria-label="주 메뉴">
       <ul>
         <li><a href="#about">회사 소개</a></li>
-        <li><a href="#experts">전문위원</a></li>
+        <li><a href="#experts" data-open-experts>전문위원 소개</a></li>
         <li><a href="#services">서비스</a></li>
         <li><a href="#projects">실적</a></li>
         <li><a href="#library">자료실</a></li>
@@ -335,47 +342,10 @@ section[id],.hero{scroll-margin-top:110px}
   </div>
 </section>
 
-<section id="experts">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="tag"><b><i>02</i></b>Experts</span>
-      <h2>전문위원</h2>
-      <p>공정설계, EPC 프로젝트 관리, 생산 운전, 인허가 실무까지. 각 분야에서 30년 이상 현장을 지켜 온 전문위원이 프로젝트에 직접 참여합니다.</p>
-    </div>
-    <div class="experts">
-      <article class="expert">
-        <span class="field">기술담당 전문위원</span>
-        <h3>양성석</h3>
-        <span class="yrs">화공기술사 · 총 경력 39년</span>
-        <div class="chips"><span class="chip">Process Engineering</span><span class="chip">Project &amp; Risk Management</span></div>
-        <ul>
-          <li>세안 STX Entech EPC Project Manager</li>
-          <li>Korea PTG㈜ 생산 및 기술부장</li>
-          <li>러시아 정유사 Flare System Project (2014~2024)</li>
-          <li>사우디아라비아 석유화학사 Ethyl Acetate Project (2006~2014)</li>
-          <li>국내 석유화학사 MMA Project (1996~2000)</li>
-        </ul>
-      </article>
-      <article class="expert">
-        <span class="field">PSM 전문위원</span>
-        <h3>최귀성</h3>
-        <span class="yrs">공정안전 및 소방 전문가 · 총 경력 35년</span>
-        <div class="chips"><span class="chip">PSM·소방·가스 인허가</span><span class="chip">위험물기능장</span></div>
-        <ul>
-          <li>DL Chemical 여수공장 안전/보건담당 차장 (1991~2026)</li>
-          <li>한영대학교 전기소방학과 겸임교수</li>
-          <li>고용노동부 장관상 (2018), 안전관리 유공 여수시장상 (2025)</li>
-          <li>산업안전기사, 건설안전기사, 소방설비기사, 화재감식평가기사 외</li>
-        </ul>
-      </article>
-    </div>
-  </div>
-</section>
-
 <section id="services">
   <div class="wrap">
     <div class="sec-head">
-      <span class="tag"><b><i>03</i></b>Services</span>
+      <span class="tag"><b><i>02</i></b>Services</span>
       <h2>서비스</h2>
       <p>공정안전보고서 제출과 인허가부터 위험성평가, 중대재해처벌법 대응, 안전문화까지 공정안전관리 전 주기를 지원합니다.</p>
     </div>
@@ -421,7 +391,7 @@ section[id],.hero{scroll-margin-top:110px}
 <section id="projects">
   <div class="wrap">
     <div class="sec-head">
-      <span class="tag"><b><i>04</i></b>Track Record</span>
+      <span class="tag"><b><i>03</i></b>Track Record</span>
       <h2>주요 실적</h2>
       <p>대표 컨설턴트와 전문위원이 수행한 주요 프로젝트입니다.</p>
     </div>
@@ -447,7 +417,7 @@ section[id],.hero{scroll-margin-top:110px}
 <section id="library">
   <div class="wrap">
     <div class="sec-head">
-      <span class="tag"><b><i>05</i></b>Resources</span>
+      <span class="tag"><b><i>04</i></b>Resources</span>
       <h2>자료실</h2>
       <p>공정안전관리 실무에 바로 쓸 수 있는 PSM 자료를 공개합니다.</p>
     </div>
@@ -475,7 +445,7 @@ section[id],.hero{scroll-margin-top:110px}
 <section id="contact">
   <div class="wrap">
     <div class="sec-head">
-      <span class="tag"><b><i>06</i></b>Contact</span>
+      <span class="tag"><b><i>05</i></b>Contact</span>
       <h2>상담 문의</h2>
       <p>공정안전보고서 신규 제출, 이행평가 대비, HAZOP·위험성평가 등 필요한 내용을 남겨 주시면 전문위원이 검토 후 연락드립니다.</p>
     </div>
@@ -520,6 +490,44 @@ section[id],.hero{scroll-margin-top:110px}
   </div>
 </section>
 
+<dialog id="experts" class="exp-dlg" aria-labelledby="exp-title">
+  <div class="exp-dlg-head">
+    <div>
+      <span class="tag"><b><i>RBSS</i></b>Experts</span>
+      <h2 id="exp-title">전문위원 소개</h2>
+      <p>공정설계, EPC 프로젝트 관리, 생산 운전, 인허가 실무까지. 각 분야에서 30년 이상 현장을 지켜 온 전문위원이 프로젝트에 직접 참여합니다.</p>
+    </div>
+    <button type="button" class="exp-close" aria-label="닫기">&times;</button>
+  </div>
+  <div class="experts">
+      <article class="expert">
+        <span class="field">기술담당 전문위원</span>
+        <h3>양성석</h3>
+        <span class="yrs">화공기술사 · 총 경력 39년</span>
+        <div class="chips"><span class="chip">Process Engineering</span><span class="chip">Project &amp; Risk Management</span></div>
+        <ul>
+          <li>세안 STX Entech EPC Project Manager</li>
+          <li>Korea PTG㈜ 생산 및 기술부장</li>
+          <li>러시아 정유사 Flare System Project (2014~2024)</li>
+          <li>사우디아라비아 석유화학사 Ethyl Acetate Project (2006~2014)</li>
+          <li>국내 석유화학사 MMA Project (1996~2000)</li>
+        </ul>
+      </article>
+      <article class="expert">
+        <span class="field">PSM 전문위원</span>
+        <h3>최귀성</h3>
+        <span class="yrs">공정안전 및 소방 전문가 · 총 경력 35년</span>
+        <div class="chips"><span class="chip">PSM·소방·가스 인허가</span><span class="chip">위험물기능장</span></div>
+        <ul>
+          <li>DL Chemical 여수공장 안전/보건담당 차장 (1991~2026)</li>
+          <li>한영대학교 전기소방학과 겸임교수</li>
+          <li>고용노동부 장관상 (2018), 안전관리 유공 여수시장상 (2025)</li>
+          <li>산업안전기사, 건설안전기사, 소방설비기사, 화재감식평가기사 외</li>
+        </ul>
+      </article>
+    </div>
+</dialog>
+
 <footer>
   <div class="wrap">
     <div><strong>주식회사 알비에스에스 (RBSS)</strong><p>안전관리자 업무 위탁 · 안전관리전문기관 · 사업자등록번호 348-81-03742</p><p>Tel 010-5285-3814 · Fax 070-7543-3824 · kyungjinlee32@gmail.com</p></div>
@@ -527,6 +535,16 @@ section[id],.hero{scroll-margin-top:110px}
   </div>
 </footer>
 
+<script>
+(function(){
+  var d=document.getElementById('experts');if(!d||!d.showModal)return;
+  function open(e){if(e)e.preventDefault();if(!d.open)d.showModal();}
+  document.querySelectorAll('[data-open-experts],a[href="#experts"]').forEach(function(a){a.addEventListener('click',open);});
+  d.querySelector('.exp-close').addEventListener('click',function(){d.close();});
+  d.addEventListener('click',function(e){if(e.target===d)d.close();});
+  if(location.hash==='#experts')open();
+})();
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 (function(){

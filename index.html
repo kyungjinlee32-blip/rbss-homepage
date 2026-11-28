@@ -168,10 +168,13 @@ section + section{border-top:1px solid var(--line)}
 .kv div{display:grid;grid-template-columns:76px 1fr;gap:12px}
 .kv dt{color:var(--muted)}
 .kv dd{margin:0}
-.kv .ov-h{margin:12px 0 4px;font-weight:700;color:var(--ink)}
-.kv ul.ov{margin:0;padding-left:18px;display:grid;gap:8px}
-.kv ul.ov li{color:var(--muted)}
-.kv ul.ov b{color:var(--ink);font-weight:600}
+.ov-block{margin-top:40px}
+.ov-title{font-size:19px;margin:0 0 16px;padding-left:12px;border-left:3px solid var(--accent)}
+.ov-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.ov-grid li{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;font-size:14.5px;color:var(--muted);min-width:0}
+.ov-grid b{color:var(--ink);font-weight:600}
+@media (min-width:1100px){.ov-grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:760px){.ov-grid{grid-template-columns:1fr}}
 @media (max-width:520px){.kv div{grid-template-columns:1fr;gap:2px}}
 @media (max-width:860px){.about-grid{grid-template-columns:1fr}}
 
@@ -369,8 +372,14 @@ section[id],.hero{scroll-margin-top:110px}
         </div>
         <dl class="kv">
           <div><dt>경력</dt><dd>KBR, 이라크 CSSP Project Technical Safety Lead (2026년 5월~현재)<br>RBSS 대표 컨설턴트 (현재 휴업 중)<br>GS칼텍스 안전보건기획팀<br>삼성화재 방재센터 수석 Risk Surveyor<br>대림산업 석유화학사업부 (PSM Set-up·유지관리)
-            <p class="ov-h">해외 근무 및 해외사 경력</p>
-            <ul class="ov">
+          
+          </dd></div>
+        </dl>
+      </article>
+    </div>
+    <div class="ov-block">
+      <h3 class="ov-title">해외 근무 및 해외사 경력</h3>
+      <ul class="ov-grid">
               <li><b>KBR · 이라크 CSSP Project</b> (2026.05~현재)<br>PMC Technical Safety Lead (TotalEnergies 발주, Iraq Common Seawater Supply Project). 상세설계 단계 PMC Technical Safety 총괄, EPC 계약자 HSE·Technical Safety 산출물 및 소방설비 등 Vendor 제안 검토(TotalEnergies GS-GR-HSE 기준), HAZID·HAZOP·SIL·화재폭발위험성평가 검토</li>
               <li><b>헝가리 부다페스트 · Samsung SDI Hungary</b> (2023.10~2025.10)<br>Director, Safety Advisor. 이차전지 제조공장 2-2 증설·개조 프로젝트 안전 자문</li>
               <li><b>Matheson Gas Production Korea</b> (2022.08~2023.10)<br>Director, EHS 팀장. 반도체용 특수가스 생산시설 EHS 총괄</li>
@@ -383,10 +392,7 @@ section[id],.hero{scroll-margin-top:110px}
               <li><b>쿠웨이트 · 사우디 · 태국 · 이집트 · GS건설</b> (2007.05~2008.01)<br>Project HSE Manager. 해외 플랜트 프로젝트 HSE 체계 구축 지원 및 신규 프로젝트 제안 지원</li>
               <li><b>알제리 스킥다 · 대림산업 HDPE Rehabilitation Project</b> (2005.05~2006.04)<br>HSE Manager. 신규 플랜트 안전관리체계 구축 및 공정안전관리 수행</li>
               <li><b>이란 아살루예 · 대림산업 South Pars Gas Project</b> (2004.11~2005.04)<br>Precommissioning Lead Engineer (JGC/TOYO J/V). 시운전 매뉴얼 및 Start-up용 P&amp;ID 작성</li>
-            </ul>
-          </dd></div>
-        </dl>
-      </article>
+      </ul>
     </div>
   </div>
 </section>
